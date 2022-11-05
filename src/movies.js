@@ -39,16 +39,36 @@ function scoresAverage(moviesArray) {
 }
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
-function dramaMoviesScore(moviesArray) {}
+function dramaMoviesScore(moviesArray) {
+  const dramaMoviesArray = moviesArray.filter(el => el.genre.includes("Drama"))
+  if (dramaMoviesArray.length === 0) return 0;
+  else {
+    const dramaScoresSum = dramaMoviesArray.reduce((a, b) => {
+      return b.score ? a + b.score : a;
+    }, 0);
+    const dramaScoresAvg = dramaScoresSum / dramaMoviesArray.length;
+   
+    return Math.round(dramaScoresAvg * 100) / 100;
+  }
+}
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
-function orderByYear(moviesArray) {}
+function orderByYear(moviesArray) {
+    const moviesArraySorted = [...moviesArray].sort((a,b) => a.year - b.year)
+    return moviesArraySorted;
+}
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
-function orderAlphabetically(moviesArray) {}
+function orderAlphabetically(moviesArray) {
+  const moviesArraySorted = [...moviesArray].sort((a,b) => (a.title < b.title) ? -1 : (a.title > b.title) ? 1 : 0)
+  const titleMoviesArraySorted = moviesArraySorted.filter((el, index) => index < 20).map(el => el.title)
+  return titleMoviesArraySorted;
+}
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
